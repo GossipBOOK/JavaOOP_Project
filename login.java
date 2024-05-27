@@ -3,9 +3,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.sql.ResultSet;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -14,6 +17,8 @@ import javax.swing.JTextField;
 public class login extends JFrame implements ActionListener{
 
     JButton loginButton,ForgotPassword,create;
+    JTextField emailField;
+    JPasswordField passwordField;
     login(){
         setLayout(null);
         JLabel GossipBook = new JLabel("Gossip Book");
@@ -42,15 +47,15 @@ public class login extends JFrame implements ActionListener{
         loginPanel.add(head);
 
 
-        JTextField email = new JTextField("Enter your email address");
-        email.setFont(new Font("Inria Serif",Font.BOLD,15));
-        email.setBounds(40,90,240,40);
-        email.setForeground(Color.white);
-        email.setBackground(new Color(29, 27, 38));
-        loginPanel.add(email);
+        emailField = new JTextField("Enter your email address");
+        emailField.setFont(new Font("Inria Serif",Font.BOLD,15));
+        emailField.setBounds(40,90,240,40);
+        emailField.setForeground(Color.white);
+        emailField.setBackground(new Color(29, 27, 38));
+        loginPanel.add(emailField);
 
         
-        JPasswordField passwordField = new JPasswordField("Password");
+        passwordField = new JPasswordField("Password");
         passwordField.setFont(new Font("Inria Serif",Font.BOLD,20));
         passwordField.setBounds(40,150,240,40);
         passwordField.setForeground(Color.white);
@@ -101,11 +106,39 @@ public class login extends JFrame implements ActionListener{
     
         }
 
-        if(ae.getSource()==ForgotPassword){
+        else if(ae.getSource()==ForgotPassword){
             setVisible(false);
             new securityquestion().setVisible(true);;
-    
         }
+
+        else if(ae.getSource()==loginButton){
+            conn conn = new conn();
+
+            String email = emailField.getText();
+            String password = passwordField.getText();
+            String query = "select * from credentials where email='"+email+"' and password ='"+password+"'";
+
+            try{
+                ResultSet rs = conn.s.executeQuery(query);
+                if(rs.next()){
+                    setVisible(false);
+                    JOptionPane.showMessageDialog(null, "You are logged in");
+                    
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Incorrect credentials");
+                }
+
+
+
+            }catch(Exception e){
+                System.out.println(e);
+
+            }
+
+        }
+
+    
     }
     
     public static void main(String[] args) {
