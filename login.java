@@ -1,4 +1,8 @@
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -6,7 +10,10 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class login extends JFrame{
+
+public class login extends JFrame implements ActionListener{
+
+    JButton loginButton,ForgotPassword,create;
     login(){
         setLayout(null);
         JLabel GossipBook = new JLabel("Gossip Book");
@@ -36,52 +43,69 @@ public class login extends JFrame{
 
 
         JTextField email = new JTextField("Enter your email address");
-        email.setFont(new Font("Inter",Font.BOLD,15));
+        email.setFont(new Font("Inria Serif",Font.BOLD,15));
         email.setBounds(40,90,240,40);
         email.setForeground(Color.white);
         email.setBackground(new Color(29, 27, 38));
         loginPanel.add(email);
 
+        
         JPasswordField passwordField = new JPasswordField("Password");
-        passwordField.setFont(new Font("Inter",Font.BOLD,15));
+        passwordField.setFont(new Font("Inria Serif",Font.BOLD,20));
         passwordField.setBounds(40,150,240,40);
         passwordField.setForeground(Color.white);
         passwordField.setBackground(new Color(29, 27, 38));
         loginPanel.add(passwordField);
 
-        JButton login = new JButton("Login");
-        login.setFont(new Font("Inter",Font.BOLD,15));
-        login.setBounds(40,210,240,40);
-        login.setForeground(Color.white);
-        login.setBackground(new Color(29, 27, 38));
-        login.setFocusable(false);
+        loginButton = new JButton("Login");
+        loginButton.setFont(new Font("Inria Serif",Font.BOLD,15));
+        loginButton.setBounds(40,210,240,40);
+        loginButton.setForeground(Color.white);
+        loginButton.setBackground(new Color(29, 27, 38));
+        loginButton.setFocusable(false);
+        loginButton.addActionListener(this);
+        loginPanel.add(loginButton);
 
-        loginPanel.add(login);
-
-        JButton ForgotPassword = new JButton("Forgot Password?");
-        ForgotPassword.setFont(new Font("Inter",Font.BOLD,15));
+        ForgotPassword = new JButton("Forgot Password?");
+        ForgotPassword.setFont(new Font("Inria Serif",Font.BOLD,15));
         ForgotPassword.setBounds(40,260,240,30);
         ForgotPassword.setBorderPainted(false);
         ForgotPassword.setForeground(Color.white);
         ForgotPassword.setBackground(getForeground());
         ForgotPassword.setFocusable(false);
+        ForgotPassword.addActionListener(this);
         loginPanel.add(ForgotPassword);
 
-        JButton create = new JButton("Create New Account");
-        create.setFont(new Font("Inter",Font.BOLD,15));
+        create = new JButton("Create New Account");
+        create.setFont(new Font("Inria Serif",Font.BOLD,15));
         create.setBounds(40,310,240,30);
         create.setForeground(Color.white);
         create.setBackground(getForeground());
         create.setFocusable(false);
+        create.addActionListener(this);
         loginPanel.add(create);
-
 
         setTitle("Login");
         setVisible(true);
         setSize(800,500);
-        setLocation(100, 100);
+        setLocation(400, 200);
         getContentPane().setBackground(new Color(17, 8, 62));
 
+    }
+
+    public void actionPerformed(ActionEvent ae){
+
+        if(ae.getSource()==create){
+            setVisible(false);
+            new signupOne().setVisible(true);;
+    
+        }
+
+        if(ae.getSource()==ForgotPassword){
+            setVisible(false);
+            new securityquestion().setVisible(true);;
+    
+        }
     }
     
     public static void main(String[] args) {

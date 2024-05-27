@@ -12,12 +12,12 @@ import javax.swing.JTextField;
 
 
 
-public class signup extends JFrame implements ActionListener{
+public class signupOne extends JFrame implements ActionListener{
     JTextField email;
     JPasswordField passwordField;
     JPasswordField repasswordField ;
     JButton signup,login;
-    signup(){
+    signupOne(){
         
         setLayout(null);
         JLabel GossipBook = new JLabel("Gossip Book");
@@ -47,14 +47,14 @@ public class signup extends JFrame implements ActionListener{
 
 
         email = new JTextField("Enter your email address");
-        email.setFont(new Font("Inter",Font.BOLD,15));
+        email.setFont(new Font("Inria Serif",Font.BOLD,15));
         email.setBounds(40,90,240,40);
         email.setForeground(Color.white);
         email.setBackground(new Color(29, 27, 38));
         signupPanel.add(email);
 
         passwordField = new JPasswordField("Password");
-        passwordField.setFont(new Font("Inter",Font.BOLD,20));
+        passwordField.setFont(new Font("Inria Serif",Font.BOLD,20));
         passwordField.setBounds(40,150,240,40);
         passwordField.setForeground(Color.white);
         passwordField.setBackground(new Color(29, 27, 38));
@@ -62,14 +62,14 @@ public class signup extends JFrame implements ActionListener{
 
         
         repasswordField = new JPasswordField("Password");
-        repasswordField.setFont(new Font("Inter",Font.BOLD,20));
+        repasswordField.setFont(new Font("Inria Serif",Font.BOLD,20));
         repasswordField.setBounds(40,200,240,40);
         repasswordField.setForeground(Color.white);
         repasswordField.setBackground(new Color(29, 27, 38));
         signupPanel.add(repasswordField);
 
         signup = new JButton("Signup");
-        signup.setFont(new Font("Inter",Font.BOLD,15));
+        signup.setFont(new Font("Inria Serif",Font.BOLD,15));
         signup.setBounds(40,250,240,40);
         signup.setForeground(Color.white);
         signup.setBackground(new Color(29, 27, 38));
@@ -78,7 +78,7 @@ public class signup extends JFrame implements ActionListener{
         signupPanel.add(signup);
 
         login = new JButton("Login");
-        login.setFont(new Font("Inter",Font.BOLD,15));
+        login.setFont(new Font("Inria Serif",Font.BOLD,15));
         login.setBounds(40,310,240,30);
         login.setForeground(Color.white);
         login.setBackground(getForeground());
@@ -89,23 +89,19 @@ public class signup extends JFrame implements ActionListener{
         setTitle("signup");
         setVisible(true);
         setSize(800,500);
-        setLocation(100, 100);
+        setLocation(400,200);
         getContentPane().setBackground(new Color(17, 8, 62));
-
     }
-
 
     public void actionPerformed(ActionEvent ae){
 
-
-        //password fields validation
-        if(ae.getSource()==signup){
-            email.setText("");
-        
+        if(ae.getSource()==login){
+            setVisible(false);
+            new login().setVisible(true);
         }
     }
     
     public static void main(String[] args) {
-        new signup();
+        new signupOne();
     }
 }
