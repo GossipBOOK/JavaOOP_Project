@@ -65,7 +65,6 @@ public class email extends JFrame implements ActionListener{
         setResizable(false);
         getContentPane().setBackground(new Color(22,22,29));
         setVisible(true);
-
     }
 
     public static void main(String[] args) {
@@ -75,7 +74,6 @@ public class email extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
-
         try{
 
             String email = emailField.getText();
