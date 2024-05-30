@@ -5,6 +5,8 @@ public class conn {
 
     public conn(){
         try {
+            
+            //sql workbench username and password
 
             c = DriverManager.getConnection("jdbc:mysql://localhost:3306/", "root", "password");
     
