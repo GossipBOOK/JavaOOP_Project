@@ -3,6 +3,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.sql.*;
+import java.util.Random;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,6 +16,7 @@ import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
 
 public class signupOne extends JFrame implements ActionListener {
+    int randomUserID;
     JTextField emailField;
     JPasswordField passwordField, repasswordField;
     JButton signup, login;
@@ -23,6 +26,8 @@ public class signupOne extends JFrame implements ActionListener {
     signupOne() {
 
         setLayout(null);
+        Random random = new Random();
+        randomUserID = random.nextInt(4000);
 
         JPanel signupPanel = new JPanel();
         signupPanel.setBounds(400, 60, 320, 360);
@@ -163,6 +168,8 @@ public class signupOne extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent ae) {
+
+        int userID = randomUserID;
         conn conn = new conn();
         String email = emailField.getText();
         String password = passwordField.getText();
@@ -175,8 +182,7 @@ public class signupOne extends JFrame implements ActionListener {
 
         else if (ae.getSource() == signup) {
 
-            String query1 = "Create table if not exists credentials(email varchar(255),password varchar(255))";
-            String query2 = "Insert into credentials values('" + email + "','" + password + "')";
+            String query2 = "Insert into credentials values('" + userID + "','" + email + "','" + password + "')";
 
             try {
 
@@ -195,7 +201,6 @@ public class signupOne extends JFrame implements ActionListener {
                         JOptionPane.showMessageDialog(null, "This email is already taken");
                     } else {
 
-                        conn.s.executeUpdate(query1);
                         conn.s.executeUpdate(query2);
 
                         JOptionPane.showMessageDialog(null, "Your email is " + email);
