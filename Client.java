@@ -1,10 +1,29 @@
 import java.awt.*;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+
+// For socket
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
+// new
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Client extends JFrame{
+    JButton send_btn;
+    JTextField client_input;
     Client(){
         setLayout(null);
         
@@ -19,6 +38,39 @@ public class Client extends JFrame{
         leftPanel.setBackground(new Color(29, 27, 38));
         add(leftPanel);
         leftPanel.setLayout(null);
+
+        //new
+        JPanel message_pane = new JPanel();
+        message_pane.setBounds(310,380,460,60);
+        message_pane.setBackground(new Color(29, 27, 38));
+        add(message_pane);
+
+        client_input = new JTextField("Enter your message here ...       ");
+        client_input.setFont(new Font("Sans Serif",Font.BOLD,15));
+        client_input.setBounds(10,10,400,40);
+        client_input.setForeground(Color.gray);
+        client_input.setBackground(new Color(29, 27, 38));
+        message_pane.add(client_input);
+
+        client_input.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                if (client_input.getText().equals("Enter your message here ...       ")) {
+                    client_input.setText("");
+                    client_input.setForeground(Color.white);
+                    }
+            }
+        });
+
+        send_btn = new JButton("Send");
+        send_btn.setFont(new Font("Inria Serif",Font.BOLD,15));
+        send_btn.setBounds(40,210,240,40);
+        send_btn.setForeground(Color.white);
+        send_btn.setBackground(new Color(29, 27, 38));
+        send_btn.setFocusable(false);
+        message_pane.add(send_btn);
+
+        //new
 
         ImageIcon search = new ImageIcon("img//search.png");
         Image i1 = search.getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT);
@@ -66,8 +118,51 @@ public class Client extends JFrame{
         setSize(800,500);
         setLocation(100, 100);
         getContentPane().setBackground(new Color(4,4,30));
+   
+        sendMessage();
     }
+    
+    void sendMessage() {
+            // scocket
+            StringWrapper strWrapper = new StringWrapper();
+            send_btn.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    strWrapper.value =client_input.getText();
+                }
+            });
+        try {
+            Socket s = new Socket("localhost",6666);
+            DataInputStream din=new DataInputStream(s.getInputStream()); 
+            DataOutputStream dout=new DataOutputStream(s.getOutputStream());  
+            
+            String str="",str2=""; 
+             
+            while(!str.equals("stop")){   
+            dout.writeUTF(strWrapper.value);  
+            dout.flush();  
+            str2=din.readUTF();  
+            System.out.println("Server says: "+str2);  
+            } 
+            
+            dout.close();
+            s.close();
+        
+        } catch (UnknownHostException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        }
+
+        static class StringWrapper {
+            String value = "";
+        }
     public static void main(String[] args) {
         new Client();
+
+        
     }
 }
