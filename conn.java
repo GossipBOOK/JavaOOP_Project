@@ -13,9 +13,6 @@ public class conn {
             s.executeUpdate("Create Database if not exists chat");
             s.executeUpdate("Use chat");
             
-
-  
-
         } catch(Exception e){
             System.out.println(e);
         }
