@@ -50,7 +50,6 @@ public class myGUI extends javax.swing.JFrame implements ActionListener{
         jButton1.setBounds(720, 360, 150, 40);
         jButton1.addActionListener(this);
 
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(new java.awt.Color(255, 255, 255));

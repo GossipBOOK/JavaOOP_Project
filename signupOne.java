@@ -177,7 +177,6 @@ public class signupOne extends JFrame implements ActionListener {
             setVisible(false);
             new login().setVisible(true);
         }
-
         else if (ae.getSource() == signup) {
 
             String query2 = "Insert into credentials values('" + userID + "','" + email + "','" + password + "')";

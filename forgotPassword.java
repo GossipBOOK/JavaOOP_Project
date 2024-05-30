@@ -166,7 +166,6 @@ public class forgotPassword extends JFrame implements ActionListener{
             String query = "update credentials set password='"+newpass+"' where email= '"+email+"'";
             conn.s.executeUpdate(query);
             JOptionPane.showMessageDialog(null,"Successfully updated");
-            
             setVisible(false);
             new login().setVisible(true);
 

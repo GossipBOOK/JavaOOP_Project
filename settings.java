@@ -10,7 +10,6 @@ public class settings extends JFrame{
 
     JButton settings,profile,security;
 
-    
     settings(){
         setLayout(null);
         setTitle("User Settings");

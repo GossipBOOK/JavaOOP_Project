@@ -14,7 +14,6 @@ public class server extends JFrame{
         add(headPanel);
         headPanel.setLayout(null);
 
-
         JPanel leftPanel = new JPanel();
         leftPanel.setBounds(0,0,280,500);
         leftPanel.setBackground(new Color(29, 27, 38));

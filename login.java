@@ -161,7 +161,6 @@ public class login extends JFrame implements ActionListener{
             new signupOne().setVisible(true);;
     
         }
-
         else if(ae.getSource()==ForgotPassword){
             setVisible(false);
             new email().setVisible(true);;

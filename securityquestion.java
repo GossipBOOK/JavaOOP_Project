@@ -85,7 +85,7 @@ public class securityquestion extends JFrame implements ActionListener{
             if(rs.next()){
 
                 answer = rs.getString("answer");
-                
+
                 if(answer.equals(userInput)){
                     setVisible(false);
                     new forgotPassword(email).setVisible(true);
@@ -100,7 +100,6 @@ public class securityquestion extends JFrame implements ActionListener{
             System.out.println(e1);
         }
     }
-
 
 }
 
