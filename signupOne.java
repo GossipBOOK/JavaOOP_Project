@@ -31,7 +31,6 @@ public class signupOne extends JFrame implements ActionListener {
 
         signupPanel.setLayout(null);
 
-
         i1 = new ImageIcon("img//show.png");
         showPassword = new JLabel(i1);
         showPassword.setBounds(270,200,60,50);
