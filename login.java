@@ -185,8 +185,6 @@ public class login extends JFrame implements ActionListener{
                 break;
             }
 
-            if()
-
             String password = passwordField.getText();
             String query = "select * from credentials where email='"+email+"' and password ='"+password+"'";
 
