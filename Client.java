@@ -141,8 +141,8 @@ public class Client extends JFrame{
             while(!str.equals("stop")){   
             dout.writeUTF(strWrapper.value);  
             dout.flush();  
-            str2=din.readUTF();  
-            System.out.println("Server says: "+str2);  
+            // str2=din.readUTF();  
+            // System.out.println("Server says: "+str2);  
             } 
             
             dout.close();
