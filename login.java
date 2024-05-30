@@ -3,6 +3,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -170,6 +172,21 @@ public class login extends JFrame implements ActionListener{
             conn conn = new conn();
 
             String email = emailField.getText();
+            ArrayList <String> mail= new ArrayList<>();
+            mail.add("gmail");
+            mail.add("hotmail");
+            mail.add("outlook");
+            mail.add("yahoo");
+
+            for(String domain:mail ){
+                if(!email.contains("@"+domain+".com")){
+                    JOptionPane.showMessageDialog(null,"Invalid email format");
+                }
+                break;
+            }
+
+            if()
+
             String password = passwordField.getText();
             String query = "select * from credentials where email='"+email+"' and password ='"+password+"'";
 

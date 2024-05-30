@@ -2,6 +2,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import java.awt.*;
@@ -10,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 
 public class email extends JFrame implements ActionListener{
@@ -76,8 +78,22 @@ public class email extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
         try{
-
             String email = emailField.getText();
+            
+            ArrayList <String> mail= new ArrayList<>();
+            mail.add("gmail");
+            mail.add("hotmail");
+            mail.add("outlook");
+            mail.add("yahoo");
+
+            for(String domain:mail ){
+                if(!email.contains("@"+domain+".com")){
+                    JOptionPane.showMessageDialog(null,"Invalid email format");
+                }
+                break;
+
+            }
+
             String securityQuestion;
             conn conn = new conn();
             String query = "Select * from security where email='"+email+"'";
@@ -91,14 +107,13 @@ public class email extends JFrame implements ActionListener{
                 }
 
                 else{
-                    System.out.println("Email does not exist.");
+                    JOptionPane.showMessageDialog(null,"Email does not exist");
                 }
 
         }
         catch(Exception e1){
             System.out.println(e1);
         }
-
 
     }
 

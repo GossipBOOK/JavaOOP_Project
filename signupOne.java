@@ -3,6 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -170,6 +171,12 @@ public class signupOne extends JFrame implements ActionListener {
         String userID = "" + randomUserID;
         conn conn = new conn();
         String email = emailField.getText();
+        ArrayList <String> mail= new ArrayList<>();
+            mail.add("gmail");
+            mail.add("hotmail");
+            mail.add("outlook");
+            mail.add("yahoo");
+
         String password = passwordField.getText();
         String confirmPassword = repasswordField.getText();
 
@@ -186,6 +193,14 @@ public class signupOne extends JFrame implements ActionListener {
                     JOptionPane.showMessageDialog(null, "Email is required");
                 }
 
+                for(String domain:mail ){
+                    if(!email.contains("@"+domain+".com")){
+                        JOptionPane.showMessageDialog(null,"Invalid email format");
+                    }
+                    break;
+    
+                }
+                
                 if (password.length() < 8) {
                     JOptionPane.showMessageDialog(null, "Password should be at least 8 characters long");
                 } else if (password.equals(confirmPassword) && password.length() >= 8) {
