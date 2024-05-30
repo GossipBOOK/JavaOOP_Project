@@ -2,22 +2,28 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 
-public class forgotPassword extends JFrame{
+public class forgotPassword extends JFrame implements ActionListener{
 
     JTextField emailField;
     JPasswordField passwordField,repasswordField;
     JButton resetButton;
     JLabel showPassword,hidePassword;
     ImageIcon i1,i2;
+    String email;
 
-    forgotPassword(){
+    forgotPassword(String email){
+        this.email = email;
+
         setLayout(null);
 
         setTitle("Reset Password");
@@ -73,26 +79,6 @@ public class forgotPassword extends JFrame{
         reset.setForeground(Color.WHITE);
         add(reset);
 
-        emailField = new JTextField("Enter your email");
-        emailField.setFont(new Font("Inria Serif",Font.BOLD,18));
-        emailField.setBounds(140,160,300,50);
-        emailField.setForeground(Color.gray);
-        emailField.setBackground(new Color(29, 27, 38));
-        
-        add(emailField);
-
-        //MouseListener used on the TextFields to set placeholders
-        //Mouse press on emailField sets the textField content to an empty string
-        emailField.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                if (emailField.getText().equals("Enter your email")) {
-                    emailField.setText("");
-                    emailField.setForeground(Color.white);
-                    }
-            }
-        });
-
         passwordField = new JPasswordField("Password");
         passwordField.setFont(new Font("Inria Serif",Font.BOLD,18));
         passwordField.setBounds(140,250,300,50);
@@ -136,6 +122,8 @@ public class forgotPassword extends JFrame{
         resetButton.setBounds(200,420,200,50);
         resetButton.setForeground(Color.white);
         resetButton.setBackground(new Color(29, 27, 38));
+        resetButton.setFocusable(false);
+        resetButton.addActionListener(this);
         add(resetButton);
 
 
@@ -147,7 +135,45 @@ public class forgotPassword extends JFrame{
     }
 
     public static void main(String[] args) {
-        new forgotPassword();
+        new forgotPassword("");
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        // TODO Auto-generated method stub
+        try{
+
+                String newpass= passwordField.getText();
+                String repass = repasswordField.getText();
+               
+               if(!newpass.equals(repass)){
+                   JOptionPane.showMessageDialog(null,"Entered passwords don't match");
+                   return;
+                }
+
+                if(newpass.equals("")){
+                    JOptionPane.showMessageDialog(null,"Please enter new Password");
+                    return;
+                }
+                
+                if(repass.equals("")){
+                    JOptionPane.showMessageDialog(null,"Please re-enter new Password");
+                    return;
+                }
+
+            conn conn = new conn();
+
+            String query = "update credentials set password='"+newpass+"' where email= '"+email+"'";
+            conn.s.executeUpdate(query);
+            JOptionPane.showMessageDialog(null,"Successfully updated");
+            
+            setVisible(false);
+            new login().setVisible(true);
+
+
+        }catch(Exception e1){
+            System.out.println(e1);
+        }
     }
 
 }

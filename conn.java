@@ -12,7 +12,7 @@ public class conn {
 
             s.executeUpdate("Create Database if not exists chat");
             s.executeUpdate("Use chat");
-            s.executeUpdate("Create table if not exists credentials (userID int primary key,email varchar(255),password varchar(255))");
+            s.executeUpdate("Create table if not exists credentials (userID varchar(255) primary key,email varchar(255),password varchar(255))");
             
         } catch(Exception e){
             System.out.println(e);

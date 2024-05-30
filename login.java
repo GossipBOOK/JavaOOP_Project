@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
 
 public class login extends JFrame implements ActionListener{
+
     JPanel loginPanel;
     JButton loginButton,ForgotPassword,create;
     JTextField emailField;
@@ -22,6 +23,7 @@ public class login extends JFrame implements ActionListener{
     ImageIcon i1,i2;
 
     login(){
+
         setLayout(null);
 
         loginPanel = new JPanel();
@@ -162,7 +164,7 @@ public class login extends JFrame implements ActionListener{
 
         else if(ae.getSource()==ForgotPassword){
             setVisible(false);
-            new securityquestion().setVisible(true);;
+            new email().setVisible(true);;
         }
 
         else if(ae.getSource()==loginButton){

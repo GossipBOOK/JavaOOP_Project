@@ -4,7 +4,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.sql.*;
 import java.util.Random;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -20,14 +19,15 @@ public class signupOne extends JFrame implements ActionListener {
     JTextField emailField;
     JPasswordField passwordField, repasswordField;
     JButton signup, login;
-    JLabel showPassword,hidePassword;
-    ImageIcon i1,i2;
+    JLabel showPassword, hidePassword;
+    ImageIcon i1, i2;
 
     signupOne() {
 
         setLayout(null);
         Random random = new Random();
         randomUserID = random.nextInt(4000);
+
 
         JPanel signupPanel = new JPanel();
         signupPanel.setBounds(400, 60, 320, 360);
@@ -38,14 +38,14 @@ public class signupOne extends JFrame implements ActionListener {
 
         i1 = new ImageIcon("img//show.png");
         showPassword = new JLabel(i1);
-        showPassword.setBounds(270,200,60,50);
+        showPassword.setBounds(270, 200, 60, 50);
         showPassword.setBackground(new Color(29, 27, 38));
         showPassword.setFocusable(false);
         signupPanel.add(showPassword);
 
         i2 = new ImageIcon("img//hide.png");
         hidePassword = new JLabel(i2);
-        hidePassword.setBounds(270,200,60,50);
+        hidePassword.setBounds(270, 200, 60, 50);
         hidePassword.setBackground(new Color(29, 27, 38));
         hidePassword.setFocusable(false);
         signupPanel.add(hidePassword);
@@ -71,7 +71,6 @@ public class signupOne extends JFrame implements ActionListener {
             }
         });
 
-
         JLabel GossipBook = new JLabel("Gossip Book");
         GossipBook.setFont(new Font("Inter", Font.PLAIN, 30));
         GossipBook.setBounds(50, 120, 200, 40);
@@ -83,7 +82,6 @@ public class signupOne extends JFrame implements ActionListener {
         text.setBounds(50, 160, 400, 100);
         text.setForeground(Color.WHITE);
         add(text);
-
 
         JLabel head = new JLabel("SIGN UP");
         head.setFont(new Font("Serif", Font.PLAIN, 25));
@@ -104,7 +102,7 @@ public class signupOne extends JFrame implements ActionListener {
                 if (emailField.getText().equals("Enter your email address")) {
                     emailField.setText("");
                     emailField.setForeground(Color.white);
-                    }
+                }
             }
         });
 
@@ -121,7 +119,7 @@ public class signupOne extends JFrame implements ActionListener {
                 if (passwordField.getText().equals("Password")) {
                     passwordField.setText("");
                     passwordField.setForeground(Color.white);
-                    }
+                }
             }
         });
 
@@ -138,7 +136,7 @@ public class signupOne extends JFrame implements ActionListener {
                 if (repasswordField.getText().equals("Retype Password")) {
                     repasswordField.setText("");
                     repasswordField.setForeground(Color.white);
-                    }
+                }
             }
         });
 
@@ -169,7 +167,7 @@ public class signupOne extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent ae) {
 
-        int userID = randomUserID;
+        String userID = "" + randomUserID;
         conn conn = new conn();
         String email = emailField.getText();
         String password = passwordField.getText();
@@ -205,10 +203,11 @@ public class signupOne extends JFrame implements ActionListener {
 
                         JOptionPane.showMessageDialog(null, "Your email is " + email);
                         setVisible(false);
-                        new login().setVisible(true);
+                        new myGUI(email).setVisible(true);
                     }
 
-                } else {
+                } 
+                else {
                     JOptionPane.showMessageDialog(null, "The passwords don't match");
                 }
             } catch (Exception e) {
