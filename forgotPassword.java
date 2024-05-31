@@ -165,6 +165,11 @@ public class forgotPassword extends JFrame implements ActionListener{
                     return;
                 }
 
+                if(newpass.length()<8){
+                    JOptionPane.showMessageDialog(null, "Password should contain at least 8 characters");
+                    return;
+                }
+
             conn conn = new conn();
 
             String query = "update credentials set password='"+newpass+"' where email= '"+email+"'";

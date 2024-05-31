@@ -197,12 +197,16 @@ public class login extends JFrame implements ActionListener{
                 if(!validEmail){
                     JOptionPane.showMessageDialog(null,"Invalid email format");
                 }
-                
+
                 else if(rs.next()){
                     setVisible(false);
                     JOptionPane.showMessageDialog(null, "You are logged in");
-                    
                 }
+                
+                else if(password.length()<8){
+                    JOptionPane.showMessageDialog(null, "Password should contain at least 8 characters");
+                }
+                
                 else{
                     JOptionPane.showMessageDialog(null, "Incorrect credentials");
                 }
