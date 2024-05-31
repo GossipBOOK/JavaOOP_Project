@@ -6,6 +6,8 @@
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 /**
@@ -59,21 +61,22 @@ public class myGUI extends javax.swing.JFrame implements ActionListener{
         jLabel1.setFont(new java.awt.Font("Inria Serif", 1, 18)); // NOI18N
         jLabel1.setText("Update Your Security Information");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(20, 76, 332, 22);
+        jLabel1.setBounds(60, 76, 332, 22);
 
-        jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel2.setText("If there is ever a problem with your account, this information will make it easier for you to log back in and connect with your friends.");
+        jLabel2.setFont(new java.awt.Font("Inria Serif", 0, 18)); // NOI18N
+        jLabel2.setText("<html>If there is ever a problem with your account, this information will make it easier for you to <br> log back in and connect with your friends.<html>");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(20, 129, 1041, 31);
+        jLabel2.setBounds(60, 129, 1041, 50);
 
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabel3.setText("Security question");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(57, 172, 208, 17);
+        jLabel3.setBounds(57, 200, 208, 30);
 
         jLabel4.setText("Choose a security question that only you can answer.");
+        jLabel4.setFont(new java.awt.Font("Inria Serif",Font.PLAIN, 15));
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(83, 195, 317, 27);
+        jLabel4.setBounds(83, 240, 400, 27);
 
         String[] securityQuestions = {
             "What is the name of your first pet?",
@@ -93,7 +96,7 @@ public class myGUI extends javax.swing.JFrame implements ActionListener{
         });
 
         getContentPane().add(jComboBox1);
-        jComboBox1.setBounds(94, 240, 306, 22);
+        jComboBox1.setBounds(94, 280, 306, 22);
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,9 +104,8 @@ public class myGUI extends javax.swing.JFrame implements ActionListener{
             }
         });
         getContentPane().add(jTextField1);
-        jTextField1.setBounds(94, 280, 306, 30);
-
-        setBounds(100,100,900,600);
+        jTextField1.setBounds(94, 320, 306, 30);
+        setBounds(350,150,900,500);
     }// </editor-fold>                        
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {                                           
@@ -144,6 +146,7 @@ public class myGUI extends javax.swing.JFrame implements ActionListener{
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+               
                 new myGUI("").setVisible(true);
             }
         });
@@ -176,6 +179,7 @@ public class myGUI extends javax.swing.JFrame implements ActionListener{
                 String query1 = "Insert into security values('"+email+"','"+securityQuestion+"','"+answer+"')";
                 conn.s.executeUpdate(query1);
 
+                setVisible(false);
                 new login().setVisible(true);
             }
         }

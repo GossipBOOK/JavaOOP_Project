@@ -21,7 +21,7 @@ public class server extends JFrame{
         leftPanel.setLayout(null);
 
         ImageIcon search = new ImageIcon("img//search.png");
-        Image i1 = search.getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT);
+        Image i1 = search.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         ImageIcon image = new ImageIcon(i1);
         JLabel searchIcon = new JLabel(image);
         searchIcon.setBounds(0,0,81,77);
@@ -62,9 +62,10 @@ public class server extends JFrame{
         leftPanel.add(messages);
 
         setTitle("CHAT");
+        setResizable(false);
         setVisible(true);
         setSize(800,500);
-        setLocation(100, 100);
+        setLocation(350, 100);
         getContentPane().setBackground(new Color(4,4,30));
     }
     public static void main(String[] args) {

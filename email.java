@@ -72,13 +72,14 @@ public class email extends JFrame implements ActionListener{
 
     public static void main(String[] args) {
         new email();
+    
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
         try{
-            String email = emailField.getText();
+            final String email = emailField.getText();
             
             ArrayList <String> mail= new ArrayList<>();
             mail.add("gmail");

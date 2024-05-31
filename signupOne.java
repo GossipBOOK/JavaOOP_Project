@@ -21,14 +21,13 @@ public class signupOne extends JFrame implements ActionListener {
     JPasswordField passwordField, repasswordField;
     JButton signup, login;
     JLabel showPassword, hidePassword;
-    ImageIcon i1, i2;
+    ImageIcon i1, i2,i3,i4;
 
     signupOne() {
 
         setLayout(null);
         Random random = new Random();
         randomUserID = random.nextInt(4000);
-
 
         JPanel signupPanel = new JPanel();
         signupPanel.setBounds(400, 60, 320, 360);
@@ -37,17 +36,20 @@ public class signupOne extends JFrame implements ActionListener {
 
         signupPanel.setLayout(null);
 
-        i1 = new ImageIcon("img//show.png");
-        showPassword = new JLabel(i1);
-        showPassword.setBounds(270, 200, 60, 50);
-        showPassword.setBackground(new Color(29, 27, 38));
+       
+        i1 = new ImageIcon("img//show1.png");
+        Image show = i1.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        i2 = new ImageIcon(show);
+        showPassword = new JLabel(i2);
+        showPassword.setBounds(270,200,60,50);
         showPassword.setFocusable(false);
         signupPanel.add(showPassword);
 
-        i2 = new ImageIcon("img//hide.png");
-        hidePassword = new JLabel(i2);
-        hidePassword.setBounds(270, 200, 60, 50);
-        hidePassword.setBackground(new Color(29, 27, 38));
+        i3 = new ImageIcon("img//hide1.png");
+        Image hide = i3.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        i4 = new ImageIcon(hide);
+        hidePassword = new JLabel(i4);
+        hidePassword.setBounds(270,200,60,50);
         hidePassword.setFocusable(false);
         signupPanel.add(hidePassword);
         hidePassword.setVisible(false);
@@ -162,7 +164,8 @@ public class signupOne extends JFrame implements ActionListener {
         setTitle("signup");
         setVisible(true);
         setSize(800, 500);
-        setLocation(400, 200);
+        setResizable(false);
+        setLocation(360, 150);
         getContentPane().setBackground(new Color(17, 8, 62));
     }
 
@@ -227,12 +230,12 @@ public class signupOne extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(rootPane, e);
 
             }
-
         }
     }
 
     public static void main(String[] args) {
         new signupOne();
+
     }
 
 }

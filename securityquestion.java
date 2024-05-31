@@ -28,7 +28,7 @@ public class securityquestion extends JFrame implements ActionListener{
         add(title);
 
         JLabel label = new JLabel("Answer a simple security question:");
-        label.setBounds(40,100,700,40);
+        label.setBounds(40,100,700,50);
         label.setFont(new Font("Inria Serif",Font.PLAIN,40));
         label.setForeground(new Color(9,6,19));
         add(label);

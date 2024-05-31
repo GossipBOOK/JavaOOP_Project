@@ -18,7 +18,7 @@ public class forgotPassword extends JFrame implements ActionListener{
     JPasswordField passwordField,repasswordField;
     JButton resetButton;
     JLabel showPassword,hidePassword;
-    ImageIcon i1,i2;
+    ImageIcon i1,i2,i3,i4;
     String email;
 
     forgotPassword(String email){
@@ -29,16 +29,20 @@ public class forgotPassword extends JFrame implements ActionListener{
         setTitle("Reset Password");
 
         //setting show password icon as JLabel
-        i1 = new ImageIcon("img//show.png");
-        showPassword = new JLabel(i1);
+        i1 = new ImageIcon("img//show1.png");
+        Image show = i1.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        i2 = new ImageIcon(show);
+        showPassword = new JLabel(i2);
         showPassword.setBounds(440,340,60,50);
         showPassword.setBackground(new Color(29, 27, 38));
         showPassword.setFocusable(false);
         add(showPassword);
 
         // setting hide password icon as JLabel
-        i2 = new ImageIcon("img//hide.png");
-        hidePassword = new JLabel(i2);
+        i3 = new ImageIcon("img//hide1.png");
+        Image hide = i3.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        i4 = new ImageIcon(hide);
+        hidePassword = new JLabel(i4);
 
         //showPassword and hidePassword have the same setBounds to overlap them
         hidePassword.setBounds(440,340,60,50);
@@ -127,7 +131,7 @@ public class forgotPassword extends JFrame implements ActionListener{
         add(resetButton);
 
 
-        setBounds(450,200,600,600);
+        setBounds(450,100,600,600);
         setResizable(false);
         getContentPane().setBackground(new Color(22,22,29));
         setVisible(true);

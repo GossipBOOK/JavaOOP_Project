@@ -44,7 +44,7 @@ public class settings extends JFrame{
         rightPanel.setBounds(300,0,500,600);
         add(rightPanel);
 
-        setBounds(100,160,800,600);
+        setBounds(350,100,800,600);
         setResizable(false);
         setVisible(true);
         getContentPane().setBackground(new Color(17,8,62));
