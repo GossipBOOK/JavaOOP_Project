@@ -181,19 +181,24 @@ public class login extends JFrame implements ActionListener{
             mail.add("outlook");
             mail.add("yahoo");
 
-            for(String domain:mail ){
-                if(!email.contains("@"+domain+".com")){
-                    JOptionPane.showMessageDialog(null,"Invalid email format");
-                }
-                break;
-            }
-
             String password = passwordField.getText();
             String query = "select * from credentials where email='"+email+"' and password ='"+password+"'";
 
             try{
                 ResultSet rs = conn.s.executeQuery(query);
-                if(rs.next()){
+                boolean validEmail = false;
+                for(String domain:mail ){
+                    if(email.contains("@"+domain+".com")){
+                        validEmail = true;
+                    }
+                    break;
+                }
+                
+                if(!validEmail){
+                    JOptionPane.showMessageDialog(null,"Invalid email format");
+                }
+                
+                else if(rs.next()){
                     setVisible(false);
                     JOptionPane.showMessageDialog(null, "You are logged in");
                     

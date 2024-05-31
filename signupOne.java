@@ -191,22 +191,27 @@ public class signupOne extends JFrame implements ActionListener {
 
             String query2 = "Insert into credentials values('" + userID + "','" + email + "','" + password + "')";
             try {
+                boolean validEmail = false;
+                for(String domain:mail ){
+                    if(email.contains("@"+domain+".com")){
+                        validEmail = true;
+                    }
+                    break;
+    
+                }
 
                 if (email.equals("")) {
                     JOptionPane.showMessageDialog(null, "Email is required");
                 }
 
-                for(String domain:mail ){
-                    if(!email.contains("@"+domain+".com")){
-                        JOptionPane.showMessageDialog(null,"Invalid email format");
-                    }
-                    break;
-    
+                else if (!validEmail) {
+                    JOptionPane.showMessageDialog(null, "Invalid email format");
                 }
                 
-                if (password.length() < 8) {
+                else if (password.length() < 8) {
                     JOptionPane.showMessageDialog(null, "Password should be at least 8 characters long");
-                } else if (password.equals(confirmPassword) && password.length() >= 8) {
+                } 
+                else if (password.equals(confirmPassword) && password.length() >= 8) {
                     conn.s.executeUpdate("USE chat");
                     String query = "select * from credentials where email = '" + email + "';";
                     ResultSet rs = conn.s.executeQuery(query);
