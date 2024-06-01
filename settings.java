@@ -48,6 +48,7 @@ public class settings extends JFrame{
         setResizable(false);
         setVisible(true);
         getContentPane().setBackground(new Color(17,8,62));
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     public static void main(String[] args) {

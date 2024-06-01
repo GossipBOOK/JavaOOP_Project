@@ -167,6 +167,7 @@ public class signupOne extends JFrame implements ActionListener {
         setResizable(false);
         setLocation(360, 150);
         getContentPane().setBackground(new Color(17, 8, 62));
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     public void actionPerformed(ActionEvent ae) {
@@ -224,7 +225,7 @@ public class signupOne extends JFrame implements ActionListener {
 
                         JOptionPane.showMessageDialog(null, "Your email is " + email);
                         setVisible(false);
-                        new myGUI(email).setVisible(true);
+                        new userDetails(email).setVisible(true);
                     }
 
                 } 

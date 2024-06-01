@@ -156,6 +156,7 @@ public class login extends JFrame implements ActionListener{
         setResizable(false);
         setLocation(360, 150);
         getContentPane().setBackground(new Color(17, 8, 62));
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
 
     }
 

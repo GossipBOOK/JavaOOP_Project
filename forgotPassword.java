@@ -135,6 +135,7 @@ public class forgotPassword extends JFrame implements ActionListener{
         setResizable(false);
         getContentPane().setBackground(new Color(22,22,29));
         setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
 
     }
 

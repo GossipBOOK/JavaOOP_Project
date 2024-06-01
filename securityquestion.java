@@ -60,6 +60,7 @@ public class securityquestion extends JFrame implements ActionListener{
 
         getContentPane().setBackground(new Color(131,131,149));
         setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     public static void main(String[] args) {
