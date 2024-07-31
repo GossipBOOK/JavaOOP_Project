@@ -35,7 +35,7 @@ public class userDetails extends JFrame {
         setTitle("Add a profile picture");
         setLayout(null);
 
-        ImageIcon i1 = new ImageIcon("img//default1.png");
+        ImageIcon i1 = new ImageIcon("img//default.png");
         Image resize = i1.getImage().getScaledInstance(192, 192, Image.SCALE_SMOOTH);
         ImageIcon resizedImage = new ImageIcon(resize);
         image = new JLabel(resizedImage);
@@ -103,11 +103,34 @@ public class userDetails extends JFrame {
                 try {
 
                     conn conn = new conn();
+
+                    //for home screen
+
+                    String chatsQuery = "CREATE TABLE if not exists chats (email varchar(255),name VARCHAR(255) NOT NULL, lastMessage VARCHAR(255), date VARCHAR(255), profileImage LONGBLOB not null );";
+                    conn.s.executeUpdate(chatsQuery);
+                    String query2 = "Insert into chats(email,name,profileImage) values(?,?,?)";
+
                     conn.s.executeUpdate(query);
                     
                     FileInputStream file = new FileInputStream(selectedFilePath);
                     byte[] imageData = new byte[file.available()];
                     file.read(imageData);
+
+                    PreparedStatement chatPreparedStatement = conn.c.prepareStatement(query2);
+                    chatPreparedStatement.setString(1, email);
+                    chatPreparedStatement.setString(2, name);
+                    chatPreparedStatement.setBytes(3,imageData);
+
+                    int aff = chatPreparedStatement.executeUpdate();
+
+                    if ( aff> 0) {
+                        System.out.println("Image inserted successfully");
+                    } else {
+                        System.out.println("Image insertion unsuccessful");
+                    }
+
+
+
                     PreparedStatement pstmt = conn.c.prepareStatement(query1);
                     pstmt.setBytes(3, imageData);
                     pstmt.setString(1, email);
@@ -123,11 +146,12 @@ public class userDetails extends JFrame {
                         System.out.println("Image insertion unsuccessful");
                     }
 
+
                 }
 
                 catch (SQLException e1) {
                     System.out.println(e1);
-                } catch (FileNotFoundException e2) {
+                } catch (NullPointerException e2) {
                     JOptionPane.showMessageDialog(null,
                             e2 + " If you don't want to add a picture you can add it later in the app");
                 } // pending feature

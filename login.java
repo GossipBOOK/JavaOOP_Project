@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
 
 public class login extends JFrame implements ActionListener{
-
+    String name; //to pass to the new client or server class
     JPanel loginPanel;
     JButton loginButton,ForgotPassword,create;
     JTextField emailField;
@@ -184,15 +184,22 @@ public class login extends JFrame implements ActionListener{
 
             String password = passwordField.getText();
             String query = "select * from credentials where email='"+email+"' and password ='"+password+"'";
-
+            
             try{
+                String queryNames = "select name from userdetails where email='"+email+"';";
+                ResultSet names = conn.s.executeQuery(queryNames);
+                while (names.next()) {
+                    name = names.getString("name");
+                    System.out.println(name);
+                }
+
                 ResultSet rs = conn.s.executeQuery(query);
+                
                 boolean validEmail = false;
                 for(String domain:mail ){
                     if(email.contains("@"+domain+".com")){
                         validEmail = true;
                     }
-                    break;
                 }
                 
                 if(!validEmail){
@@ -200,9 +207,13 @@ public class login extends JFrame implements ActionListener{
                 }
 
                 else if(rs.next()){
-                    setVisible(false);
-                    JOptionPane.showMessageDialog(null, "You are logged in");
-                }
+                    // setVisible(false);
+                    // new Client();
+                    // Decide role based on email or other criteria
+                //Here instead of Server make a homescreen object so that we can open the same homescreen for server and client 
+                    new HomeScreen(email).setVisible(true);
+                    dispose();
+                }   
                 
                 else if(password.length()<8){
                     JOptionPane.showMessageDialog(null, "Password should contain at least 8 characters");

@@ -196,9 +196,7 @@ public class signupOne extends JFrame implements ActionListener {
                 for(String domain:mail ){
                     if(email.contains("@"+domain+".com")){
                         validEmail = true;
-                    }
-                    break;
-    
+                    }    
                 }
 
                 if (email.equals("")) {
